@@ -1,6 +1,6 @@
-class AddTableVunelrabilities < ActiveRecord::Migration[5.2]
+class AddTableVulnerables < ActiveRecord::Migration[5.2]
   def change
-    create_table :vulnerabilities do |t|
+    create_table :vulnerables do |t|
 
       t.string :nome
       t.text :description

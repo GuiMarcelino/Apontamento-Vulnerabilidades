@@ -10,28 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_31_093337) do
+ActiveRecord::Schema.define(version: 2022_03_31_233752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "historic_vulnerabilities", force: :cascade do |t|
+  create_table "historics", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "vulnerability_id", null: false
+    t.bigint "vulnerable_id", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.boolean "active", default: true
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["active"], name: "index_historic_vulnerabilities_on_active"
-    t.index ["created_at"], name: "index_historic_vulnerabilities_on_created_at"
-    t.index ["created_by_id"], name: "index_historic_vulnerabilities_on_created_by_id"
-    t.index ["deleted_at"], name: "index_historic_vulnerabilities_on_deleted_at"
-    t.index ["updated_at"], name: "index_historic_vulnerabilities_on_updated_at"
-    t.index ["updated_by_id"], name: "index_historic_vulnerabilities_on_updated_by_id"
-    t.index ["user_id"], name: "index_historic_vulnerabilities_on_user_id"
-    t.index ["vulnerability_id"], name: "index_historic_vulnerabilities_on_vulnerability_id"
+    t.index ["active"], name: "index_historics_on_active"
+    t.index ["created_at"], name: "index_historics_on_created_at"
+    t.index ["created_by_id"], name: "index_historics_on_created_by_id"
+    t.index ["deleted_at"], name: "index_historics_on_deleted_at"
+    t.index ["updated_at"], name: "index_historics_on_updated_at"
+    t.index ["updated_by_id"], name: "index_historics_on_updated_by_id"
+    t.index ["user_id"], name: "index_historics_on_user_id"
+    t.index ["vulnerable_id"], name: "index_historics_on_vulnerable_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_03_31_093337) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vulnerabilities", force: :cascade do |t|
+  create_table "vulnerables", force: :cascade do |t|
     t.string "nome"
     t.text "description"
     t.integer "level"
@@ -63,18 +63,18 @@ ActiveRecord::Schema.define(version: 2022_03_31_093337) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["active"], name: "index_vulnerabilities_on_active"
-    t.index ["created_at"], name: "index_vulnerabilities_on_created_at"
-    t.index ["created_by_id"], name: "index_vulnerabilities_on_created_by_id"
-    t.index ["deleted_at"], name: "index_vulnerabilities_on_deleted_at"
-    t.index ["updated_at"], name: "index_vulnerabilities_on_updated_at"
-    t.index ["updated_by_id"], name: "index_vulnerabilities_on_updated_by_id"
+    t.index ["active"], name: "index_vulnerables_on_active"
+    t.index ["created_at"], name: "index_vulnerables_on_created_at"
+    t.index ["created_by_id"], name: "index_vulnerables_on_created_by_id"
+    t.index ["deleted_at"], name: "index_vulnerables_on_deleted_at"
+    t.index ["updated_at"], name: "index_vulnerables_on_updated_at"
+    t.index ["updated_by_id"], name: "index_vulnerables_on_updated_by_id"
   end
 
-  add_foreign_key "historic_vulnerabilities", "users"
-  add_foreign_key "historic_vulnerabilities", "users", column: "created_by_id"
-  add_foreign_key "historic_vulnerabilities", "users", column: "updated_by_id"
-  add_foreign_key "historic_vulnerabilities", "vulnerabilities"
-  add_foreign_key "vulnerabilities", "users", column: "created_by_id"
-  add_foreign_key "vulnerabilities", "users", column: "updated_by_id"
+  add_foreign_key "historics", "users"
+  add_foreign_key "historics", "users", column: "created_by_id"
+  add_foreign_key "historics", "users", column: "updated_by_id"
+  add_foreign_key "historics", "vulnerables"
+  add_foreign_key "vulnerables", "users", column: "created_by_id"
+  add_foreign_key "vulnerables", "users", column: "updated_by_id"
 end
