@@ -4,7 +4,6 @@ class HistoricsController < ApplicationController
   # GET /historics
   def index
    @historics = Historic.all
-
     render json:@historics
   end
 
