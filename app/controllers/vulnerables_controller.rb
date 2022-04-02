@@ -1,4 +1,5 @@
 class VulnerablesController < ApplicationController
+  before_action :authenticate_user!
 
   # GET /vulnerables
   def index

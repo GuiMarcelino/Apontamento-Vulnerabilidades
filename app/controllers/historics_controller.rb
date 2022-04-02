@@ -1,6 +1,6 @@
 
 class HistoricsController < ApplicationController
-
+  before_action :authenticate_user!
   # GET /historics
   def index
    @historics = Historic.all
