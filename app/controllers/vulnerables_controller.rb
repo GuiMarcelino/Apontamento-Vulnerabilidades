@@ -3,7 +3,7 @@ class VulnerablesController < ApplicationController
 
   # GET /vulnerables
   def index
-    @vulnerables = Vulnerable.all
+    @vulnerables = Vulnerable.list(@user.id)
 
     render json: @vulnerables
   end
@@ -15,7 +15,8 @@ class VulnerablesController < ApplicationController
 
   # POST /vulnerables
   def create
-    @vulnerable = Vulnerable.new(vulnerable_params)
+
+    @vulnerable = ::Vulnerable.new(vulnerable_params.merge({ created_by_id: user_id, created_at: Time.now }))
 
     if @vulnerable.save
       render json: @vulnerable, status: :created, location: @vulnerable
@@ -48,11 +49,12 @@ class VulnerablesController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def vulnerable_params
     params.require(:vulnerable).permit(
-      :nome,
+      :name,
       :description,
-      :level,
-      :status,
+      :level_type,
+      :status_type,
       :solution
+
     )
   end
 end
