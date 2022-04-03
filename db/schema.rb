@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_03_125813) do
+ActiveRecord::Schema.define(version: 2022_04_03_163452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 2022_04_03_125813) do
   end
 
   create_table "vulnerables", force: :cascade do |t|
-    t.string "nome"
+    t.string "name"
     t.text "description"
-    t.integer "level"
-    t.integer "status"
+    t.integer "level_type"
+    t.integer "status_type"
     t.text "solution"
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
