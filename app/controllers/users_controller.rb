@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
-
+  before_action  :authenticate_user!
   # GET /users
   def index
     @users = User.all
 
-    render json: @users
+    render_json_serializer(@users, ::UserSerializer, 'users')
   end
 
   # GET /users/1
   def show
-    render json: @user
+    render_json_serializer(@users, ::UserSerializer, 'user')
   end
 
   # POST /users
