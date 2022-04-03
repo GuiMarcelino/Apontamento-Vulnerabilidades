@@ -3,7 +3,7 @@ class HistoricsController < ApplicationController
   before_action :authenticate_user!
   # GET /historics
   def index
-   @historics = Historic.all
+    @historics = Historic.all
     render json:@historics
   end
 
@@ -14,7 +14,7 @@ class HistoricsController < ApplicationController
 
   # POST /historics
   def create
-   @historic = Historic.new(historic_params)
+    @historic = Historic.new(historic_params)
 
     if@historic.save
       render json:@historic, status: :created, location:@historic
@@ -34,14 +34,14 @@ class HistoricsController < ApplicationController
 
   # DELETE /historics/1
   def destroy
-   @historic.destroy
+    @historic.destroy
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_historic
-   @historic = Historic.find(params[:id])
+    @historic = Historic.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
