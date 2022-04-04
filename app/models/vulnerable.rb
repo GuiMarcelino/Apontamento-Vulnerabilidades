@@ -6,12 +6,12 @@ class Vulnerable < ApplicationRecord
   has_many :users
   has_many :historics
 
-  scope :list, lambda {
-    select("#{table_name}.*")
-      .select("#{table_name}.created_by_id ")
-      .select('created_by.name created_by_name')
-      .joins("LEFT JOIN #{::User.table_name} created_by ON created_by.id = #{table_name}.created_by_id")
-      .includes(:users)
-  }
+  # scope :list, lambda {
+  #   select("#{table_name}.*")
+  #     .select("#{table_name}.created_by_id ")
+  #     .select('created_by.name created_by_name')
+  #     .joins("LEFT JOIN #{::User.table_name} created_by ON created_by.id = #{table_name}.created_by_id")
+  #     .includes(:users)
+  # }
 
 end

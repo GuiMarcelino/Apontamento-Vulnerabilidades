@@ -3,7 +3,7 @@ class VulnerablesController < ApplicationController
 
   # GET /vulnerables
   def index
-    @vulnerables = Vulnerable.list(@user.id)
+    @vulnerables = Vulnerable.all
 
     render json: @vulnerables
   end
@@ -15,8 +15,7 @@ class VulnerablesController < ApplicationController
 
   # POST /vulnerables
   def create
-
-    @vulnerable = ::Vulnerable.new(vulnerable_params.merge({ created_by_id: user_id, created_at: Time.now }))
+    @vulnerable = ::Vulnerable.new(vulnerable_params.merge({ created_by_id: @current_user.id, created_at: Time.now }))
 
     if @vulnerable.save
       render json: @vulnerable, status: :created, location: @vulnerable
