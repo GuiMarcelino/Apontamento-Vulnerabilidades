@@ -3,7 +3,7 @@ class VulnerablesController < ApplicationController
 
   # GET /vulnerables
   def index
-    @vulnerables = Vulnerable.list(@user.id)
+    @vulnerables = Vulnerable.all
 
     render json: @vulnerables
   end
