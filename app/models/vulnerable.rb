@@ -7,16 +7,15 @@ class Vulnerable < ApplicationRecord
   belongs_to :updated_by, class_name: '::User', required: false
   has_many :historics
 
-
   before_save :generate_log, on: %i[create update]
 
   def generate_log
-    historics.create(
+
+    historics.find_or_initialize_by(
       created_by_id: created_by_id,
       created_at: created_at,
       updated_at: updated_at,
       updated_historic: status_type
-
     )
   end
 end
