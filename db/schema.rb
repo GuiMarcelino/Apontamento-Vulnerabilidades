@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_04_154414) do
+ActiveRecord::Schema.define(version: 2022_04_06_115222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2022_04_04_154414) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.index ["active"], name: "index_vulnerables_on_active"
@@ -84,14 +83,12 @@ ActiveRecord::Schema.define(version: 2022_04_04_154414) do
     t.index ["deleted_at"], name: "index_vulnerables_on_deleted_at"
     t.index ["updated_at"], name: "index_vulnerables_on_updated_at"
     t.index ["updated_by_id"], name: "index_vulnerables_on_updated_by_id"
-    t.index ["user_id"], name: "index_vulnerables_on_user_id"
   end
 
   add_foreign_key "historics", "users"
   add_foreign_key "historics", "users", column: "created_by_id"
   add_foreign_key "historics", "users", column: "updated_by_id"
   add_foreign_key "historics", "vulnerables"
-  add_foreign_key "vulnerables", "users"
   add_foreign_key "vulnerables", "users", column: "created_by_id"
   add_foreign_key "vulnerables", "users", column: "updated_by_id"
 end
