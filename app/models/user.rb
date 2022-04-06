@@ -11,6 +11,5 @@ class User < ActiveRecord::Base
 
   include DeviseTokenAuth::Concerns::User
 
-  has_many  :historics
-
+  has_many :historics
 end

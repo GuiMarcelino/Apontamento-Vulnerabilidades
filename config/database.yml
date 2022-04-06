@@ -1,9 +1,11 @@
 
 default: &default
+  host: 10.1.1.11 # utilizar na velow
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  user: postgres   # utilizar na velow
+  timeout: 5000   # utilizar na velow
+  password: p0stgr3s # utilizar na velow
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
